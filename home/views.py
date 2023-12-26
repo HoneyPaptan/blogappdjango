@@ -7,13 +7,14 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 def contact(request):
-    messages.success(request, "welcome to contact")
+    
     if request.method =="POST":
         name = request.POST['name']
         email = request.POST['email']
         message = request.POST['message']
         Contact_form = Contact(name = name, email = email, message = message)
         Contact_form.save()
+        messages.success(request, "registered successfully")
         return redirect("/")
     return render(request, "contact.html")
 def blogs(request):
